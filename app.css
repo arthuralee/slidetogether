@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+}
+
+.board {
+  position: relative;
+  border: 10px solid #666;
+  margin: 50px auto;
+}
+
+.piece {
+  position: absolute;
+  background: #ffa;
+  border: 2px solid #aaa;
+  box-sizing: border-box;
+  transition: top 0.1s, left 0.1s;
+  font-family: Helvetica, Arial, sans-serif;
+  color: rgba(100,100,100,0.8);
+  font-size: 40px;
+  padding: 10px;
+}
