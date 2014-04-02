@@ -54,6 +54,7 @@ SlideTogether.prototype.init = function() {
   // Bind events
   $('body').on('keyup', function(e) {
     if (this.gameOver) return;
+    e.preventDefault();
 
     switch(e.keyCode) {
       case 38:

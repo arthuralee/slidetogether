@@ -1,0 +1,25 @@
+{
+  "name": "slidetogether",
+  "version": "0.0.1",
+  "description": "Collaborative puzzle-sliding game for 05-499C Crowd programming project",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~3.5.1",
+    "socket.io": "~0.9.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arthuralee/slidetogether.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/arthuralee/slidetogether/issues"
+  },
+  "homepage": "https://github.com/arthuralee/slidetogether"
+}

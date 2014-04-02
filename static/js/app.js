@@ -6,3 +6,5 @@ var game = new SlideTogether({
   width: 3,
   height: 3
 });
+
+var mGame = new Multiplayer(game);
