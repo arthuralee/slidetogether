@@ -1,21 +1,58 @@
 body {
   margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.wrapper {
+  width: 70%;
+  margin: 50px auto;
 }
 
 .board {
   position: relative;
   border: 10px solid #666;
-  margin: 50px auto;
 }
 
 .piece {
   position: absolute;
   background: #ffa;
-  /*border: 2px solid #aaa;*/
   box-sizing: border-box;
   transition: top 0.1s, left 0.1s;
-  font-family: Helvetica, Arial, sans-serif;
   color: rgba(100,100,100,0.8);
   font-size: 40px;
   padding: 10px;
+}
+
+.info {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30%;
+  background-color: #f9f9f9;
+  border-left: 1px solid #e0e0e0;
+}
+
+.info .players {
+  background-color: #f0f0f0;
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+}
+.info .players #count {
+  font-weight: bold;
+}
+
+.log {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.log li {
+  padding: 25px 20px;
+  border-bottom: 1px solid #eaeaea;
+}
+.log li.move {
+  background-color: #ffffe0;
+  font-weight: bold;
 }

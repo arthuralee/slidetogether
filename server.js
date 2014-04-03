@@ -8,7 +8,7 @@ var app = express();
 app.use(express.static(__dirname + '/static'));
 
 // Bind the server to listen on port 8080
-var server = app.listen(80);
+var server = app.listen(8012);
 var io = require('socket.io').listen(server);
 
 var game = {};
@@ -20,6 +20,9 @@ var dir = {
   LEFT: 2,
   DOWN: 3
 };
+var votes = [];
+var timer = setInterval(decide,5000);
+
 game.move = function(d) {
   switch(d) {
     case 0:
@@ -76,9 +79,13 @@ io.sockets.on('connection', function(socket) {
     socket.emit('init', returnData);
   });
 
-  socket.on('move', function(data) {
-    game.move(data.dir);
-    io.sockets.emit('move', {game: game});
+  socket.on('vote', function(data) {
+    votes.push(data.dir);
+    io.sockets.emit('vote', {
+      dir: data.dir,
+      nickname: data.nickname,
+      game: {board: game.board, pos: game.pos}
+    });
   });
 
   socket.on('disconnect', function () {
@@ -89,3 +96,39 @@ io.sockets.on('connection', function(socket) {
   });
 });
 
+function decide() {
+  if (votes.length === 0) return;
+
+  var dir = mode(votes);
+  console.log(votes);
+  console.log(dir);
+
+  game.move(dir);
+  io.sockets.emit('move', {
+    dir: dir,
+    game: {board: game.board, pos: game.pos}
+  });
+  votes = [];
+};
+
+function mode(array)
+{
+  if(array.length == 0)
+    return null;
+  var modeMap = {};
+  var maxEl = array[0], maxCount = 1;
+  for(var i = 0; i < array.length; i++)
+  {
+    var el = array[i];
+    if(modeMap[el] == null)
+      modeMap[el] = 1;
+    else
+      modeMap[el]++;  
+    if(modeMap[el] > maxCount)
+    {
+      maxEl = el;
+      maxCount = modeMap[el];
+    }
+  }
+  return maxEl;
+}
